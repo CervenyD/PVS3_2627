@@ -24,16 +24,16 @@ public class ParseFile
 
         }*/
 
-        Country Czechia = new Country("Czech Republic", "Europe",10_000_000, 89.0);
-        System.out.println(Czechia);
+        //Country Czechia = new Country("Czech Republic", "Europe",10_000_000, 89.0);
+        //System.out.println(Czechia);
 
         /* Tf do i need to do man:
            1. Read File
                 Read Line
 
-
+        //Sht to do later : learn the export thing
          */
-        while(dataim.hasNext()) {
+        /*(dataim.hasNext()) {
             String line = dataim.readLine();
             String[] info = line.split(";");
             String cntryName = info[0];
@@ -42,10 +42,36 @@ public class ParseFile
             double avgDeathAge = Double.parseDouble(info[3]);
             Country cntry1 = new Country(cntryName, continent, population, avgDeathAge);
             System.out.println(cntry1);
+        }*/
+        Country lowestPopulation;
+        Country highestDeathAge;
+        while(dataim.hasNext())
+        {
+
+            String line = dataim.readLine();
+            String[] info = line.split(";");
+            String cntryName = info[0];
+            String continent = info[1];
+            long population = Long.parseLong(info[2]);
+            double avgDeathAge = Double.parseDouble(info[3]);
+
+            long lowestPopulationBuff = 0;
+            double highestDeathAgeBuff = 0;
+
+
+            Country cntry1 = new Country(cntryName, continent, population, avgDeathAge);
+            if(cntry1.avgDeathAge > highestDeathAge)
+            {
+                highestDeathAge = new Country(cntry1.state,cntry1.continent,cntry1.population,cntry1.avgDeathAge);
+            }
+            if(cntry1.population > highestDeathAge)
+            {
+                lowestPopulation = new Country(cntry1.state,cntry1.continent,cntry1.population,cntry1.avgDeathAge);
+            }
+            //System.out.println(cntry1);
         }
 
-
-       // dataex.FinishExport();
+      //  dataex.FinishExport();
         dataim.finishImport();
     }    
 }
