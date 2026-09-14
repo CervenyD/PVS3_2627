@@ -3,10 +3,9 @@ package basics;
 import fileworks.DataExport;
 import fileworks.DataImport;
 
-import java.io.IOException;
 
 public class ParseFile {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         String path = "data/countries.txt";
         DataImport di = new DataImport(path);
 
@@ -55,13 +54,40 @@ public class ParseFile {
         DataExport de = new DataExport("output.txt");
 
 
+        Country bestAge = new Country("TBD", "TBD", 42, Double.MIN_VALUE);
+        Country worstPopulation = new Country("TBD", "TBD", Long.MAX_VALUE, 42);
+
         // Vypsat všechny řádky jako objekty (třídy Country)
         // 1. přečíst soubor
         //  1.1 přečíst řádek
-        //  1.2 do souboru output vypsat pouze země Evropy
+        // 2. Do konzole vypsat:
+        // zeme s nejvetsim avgAge
+        // zeme s nejmensi populaci
 
         while (di.hasNext()) {
-            String line = di.readLine(); // načíst řádek
+            String line = di.readLine();
+            String[] tokens = line.split(";");
+
+            String name = tokens[0];
+            String continent = tokens[1];
+            long population = Long.parseLong(tokens[2]);
+            double averageAge = Double.parseDouble(tokens[3]);
+
+            if(bestAge.avgAge < averageAge) {
+                bestAge.name = name;
+                bestAge.continent = continent;
+                bestAge.population = population;
+                bestAge.avgAge = averageAge;
+            }
+
+            if(worstPopulation.population > population){
+                worstPopulation.name = name;
+                worstPopulation.continent = continent;
+                worstPopulation.population = population;
+                worstPopulation.avgAge = averageAge;
+            }
+
+           /* String line = di.readLine(); // načíst řádek
             String[] tokens = line.split(";"); // rozsekat řádek
 
             // parsing
@@ -81,11 +107,23 @@ public class ParseFile {
             if (oneCountry.continent.equals("Europe")){
                 de.writeLine(oneCountry.toString());
             }
+            if (oneCountry.avgAge > bestAge.avgAge){
+                bestAge = oneCountry;
+            }
 
-            System.out.println(oneCountry);
+            if (oneCountry.population < worstPopulation.population){
+                worstPopulation = oneCountry;
+            }
+
+            System.out.println(oneCountry);*/
         }
 
+        //export
         de.finishExport();
+
+        System.out.println("------");
+        System.out.println("Nejhorsi populace: " + worstPopulation);
+        System.out.println("Nejlepsi doba doziti: " + bestAge);
         di.finishImport();
     }
 }
