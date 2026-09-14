@@ -1,12 +1,16 @@
 package zloOfMyOwn.oop;
+import fileworks.DataImport;
 
-import com.sun.tools.javac.Main;
+import javax.xml.crypto.Data;
 
 public class Harambe
 {
-
-    public static void Main(String[]args)
+    public static void main(String[]args)
     {
-        
+        DataImport dataImp = new DataImport("data/countries.txt");
+
+
+
     }
+
 }

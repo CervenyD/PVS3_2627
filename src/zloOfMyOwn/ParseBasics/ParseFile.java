@@ -43,8 +43,9 @@ public class ParseFile
             Country cntry1 = new Country(cntryName, continent, population, avgDeathAge);
             System.out.println(cntry1);
         }*/
-        Country lowestPopulation;
-        Country highestDeathAge;
+        Country lowestPopulation = new Country("placehold","placehold",0,0);
+
+        Country highestDeathAge = new Country("placehold","placehold",0,0);
         while(dataim.hasNext())
         {
 
@@ -55,22 +56,27 @@ public class ParseFile
             long population = Long.parseLong(info[2]);
             double avgDeathAge = Double.parseDouble(info[3]);
 
-            long lowestPopulationBuff = 0;
-            double highestDeathAgeBuff = 0;
 
 
             Country cntry1 = new Country(cntryName, continent, population, avgDeathAge);
-            if(cntry1.avgDeathAge > highestDeathAge)
+            if(cntry1.avgDeathAge > highestDeathAge.avgDeathAge)
             {
-                highestDeathAge = new Country(cntry1.state,cntry1.continent,cntry1.population,cntry1.avgDeathAge);
+                highestDeathAge.state = cntry1.state;
+                highestDeathAge.continent = cntry1.continent;
+                highestDeathAge.population = cntry1.population;
+                highestDeathAge.avgDeathAge = cntry1.avgDeathAge;
             }
-            if(cntry1.population > highestDeathAge)
+            if(cntry1.population < lowestPopulation.avgDeathAge)
             {
-                lowestPopulation = new Country(cntry1.state,cntry1.continent,cntry1.population,cntry1.avgDeathAge);
+                lowestPopulation.state = cntry1.state;
+                lowestPopulation.continent = cntry1.continent;
+                lowestPopulation.population = cntry1.population;
+                lowestPopulation.avgDeathAge = cntry1.avgDeathAge;
             }
             //System.out.println(cntry1);
         }
-
+        System.out.println(highestDeathAge);
+        System.out.println(lowestPopulation);
       //  dataex.FinishExport();
         dataim.finishImport();
     }    
