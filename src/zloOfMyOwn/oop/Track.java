@@ -1,4 +1,8 @@
 package zloOfMyOwn.oop;
+import fileworks.DataImport;
+
+import javax.xml.crypto.Data;
+import java.util.ArrayList;
 
 public class Track
 {
@@ -39,12 +43,24 @@ public class Track
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Track{" +
                 "name='" + name + '\'' +
                 ", year=" + year +
                 ", rating=" + rating +
                 ", duration=" + duration +
                 '}';
+    }
+    public static void main(String[] args)
+    {
+        DataImport dImp = new DataImport("data/tracks.txt");
+        ArrayList<Track> tracks = new ArrayList<>();
+        while(dImp.hasNext())
+        {
+         String linecky = dImp.readLine();
+         String[] casti = linecky.split(";");
+         Track Songa = new Track(Integer.parseInt(casti[0]),casti[1],Double.parseDouble(casti[2]),Integer.parseInt(casti[3]));
+        }
     }
 }
