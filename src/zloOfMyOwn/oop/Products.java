@@ -1,4 +1,5 @@
 package zloOfMyOwn.oop;
 
-public class Products {
+public class Products
+{
 }
