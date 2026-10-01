@@ -1,9 +1,45 @@
 package zloOfMyOwn.oop;
+import fileworks.DataImport;
+
+import java.util.ArrayList;
+
 
 public class pointsThing
 {
     public static void main(String[] args)
     {
+        DataImport dImp = new DataImport("data/points.txt");
+
+        ArrayList<Point> pointzz = new ArrayList<>();
+
+
+        String linec;
+        String[] parameterz;
+        while (dImp.hasNext())
+        {
+            linec = dImp.readLine();
+            parameterz = linec.split(",");
+
+
+            switch (parameterz.length)
+            {
+                case 2:
+                    pointzz.add(new Point(Double.parseDouble(parameterz[0]),Double.parseDouble(parameterz[1])));
+                    break;
+                case 3:
+                    pointzz.add(new Point(parameterz[0], Double.parseDouble(parameterz[1]), Double.parseDouble(parameterz[2])));
+                    break;
+                case 4:
+                    pointzz.add(new Point(parameterz[0], Double.parseDouble(parameterz[1]), Double.parseDouble(parameterz[2]), Double.parseDouble(parameterz[3])));
+                    break;
+            }
+        }
+
+        dImp.finishImport();
+        for(Point pointt: pointzz)
+        {
+            System.out.println(pointt);
+        }
 
     }
 }
@@ -68,4 +104,6 @@ class Point
     public void setZ(double z) {
         this.z = z;
     }
+
+
 }
