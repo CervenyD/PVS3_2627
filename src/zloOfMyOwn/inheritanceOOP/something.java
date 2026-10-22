@@ -104,6 +104,10 @@ class Main {
             }
         }
 
+        for (Animal animal :animalFarm)
+        {
+
+        }
 
 
 
