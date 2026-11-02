@@ -1,10 +1,11 @@
-package exams;
+package zloOfMyOwn.TestInheritance;
 
 import fileworks.DataExport;
 import fileworks.DataImport;
-import oop.inheritance.Doctor;
-import oop.inheritance.Surgeon;
-import oop.inheritance.CardiacSurgeon;
+import zloOfMyOwn.TestInheritance.CardiacSurgeon;
+import zloOfMyOwn.TestInheritance.Doctor;
+import zloOfMyOwn.TestInheritance.Surgeon;
+
 
 // Načtěte ze souboru hospitalData informace o doktorech
 // do souboru hospital.txt vypiste nasledujici informace o vsech doktorech:
@@ -23,7 +24,26 @@ import oop.inheritance.CardiacSurgeon;
 
 public class Hospital {
 
-    static void validateJob(Doctor d, String jobType) {
+    static int penalizace = 0; // Za kazdej spatnej zakrok se incrementne
+
+    static void validateJob(Doctor d, String jobType)
+    {
+
+        if (d instanceof CardiacSurgeon)
+        {
+            if (!jobType.contains("C")) penalizace++;
+        }
+        else if (d instanceof Surgeon)
+        {
+            if (!jobType.contains("S")) penalizace++;
+        }
+        else // pro basic Doctora
+        {
+            if (!jobType.contains("D")) penalizace++;
+        }
+
+
+
         // TODO: implementujte logiku validace práce:
         // Doktor může dělat práci typu `jobType` jen pokud je kvalifikovan
         // C -> cardiacSurgery
@@ -32,13 +52,54 @@ public class Hospital {
     }
 
     public static void main(String[] args) {
-        DataImport di = new DataImport("data/hospitalData.txt");
-        DataExport de = new DataExport("data/salaries.txt");
+        DataImport dImp = new DataImport("data/hospitalData.txt");
+        DataExport dExp = new DataExport("data/hospital.txt");
+
+        String line;
+        String[] info;
+        while(dImp.hasNext())
+        {
+
+            line = dImp.readLine();
+            info = line.split(";");
+
+
+            switch (info[1])
+            {
+                case "Doctor":
+                    Doctor doc = new Doctor(info[0]);
+                    break;
+                case "Surgeon":
+                    Surgeon knifeDoc = new Surgeon(info[0]);
+                    break;
+                case "CardiacSurgeon":
+                    CardiacSurgeon heartDoc = new CardiacSurgeon(info[0]);
+                    break;
+            }
+            for (String kusInfa : info)
+            {
+                if (kusInfa.length()!= 1)
+                {
+                    continue;
+                }
+                validateJob(     ,kusInfa);
+
+
+
+            }
+
+
+        }
+
+
+
+
+
 
         // TODO: napsat test
 
         // nezapomenout na úklid
-        di.finishImport();
-        de.finishExport();
+        dImp.finishImport();
+        dExp.finishExport();
     }
 }

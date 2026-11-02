@@ -1,6 +1,6 @@
 package oop.inheritance;
 
-public class Doctor {
+class Doctor {
     final static int BASE_SALARY = 50000;
 
    protected String name;

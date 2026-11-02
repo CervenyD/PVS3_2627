@@ -1,11 +1,6 @@
-package oop.inheritance;
+package zloOfMyOwn.TestInheritance;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-public class Hospital {
+public class HospitalHHHH {
 
     public static void main(String[] args) {
         Doctor doctor = new Doctor("Jeff");

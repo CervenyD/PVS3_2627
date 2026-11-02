@@ -1,6 +1,6 @@
-package oop.inheritance;
+package zloOfMyOwn.TestInheritance;
 
-public class Surgeon extends Doctor{
+public class Surgeon extends Doctor {
     final static int SURGEON_BONUS = 25000;
 
     Surgeon(String name) {

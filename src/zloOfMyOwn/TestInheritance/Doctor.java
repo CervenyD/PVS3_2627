@@ -1,4 +1,4 @@
-package oop.inheritance;
+package zloOfMyOwn.TestInheritance;
 
 public class Doctor {
     final static int BASE_SALARY = 50000;
