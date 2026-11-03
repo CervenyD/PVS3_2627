@@ -1,4 +1,6 @@
 package zloOfMyOwn.interf;
 
-public interface inter1 {
+public interface timeThing
+{
+    void printTime();
 }
