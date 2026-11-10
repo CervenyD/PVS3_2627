@@ -60,6 +60,8 @@ class Item implements Comparable<Item>{
             return Double.compare(Item o1, Item o2);  // TODO:tady to rve
         }
     };
+    public static final Comparator<Item> BY_POCET{}
+
 
     public Item(String name, int quantity, double price) {
         this.name = name;

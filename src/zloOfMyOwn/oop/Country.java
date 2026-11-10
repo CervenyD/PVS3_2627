@@ -48,5 +48,13 @@ public class Country implements Comparable<Country>
 
         }
 
+    public static final Comparator<Country> BY_POPULATION = new Comparator<Country>() {
+        @Override
+        public int compare(Country o1, Country o2)
+        {
+            return 0;
+        }
+    };
+
     }
 }
