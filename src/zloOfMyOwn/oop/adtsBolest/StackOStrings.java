@@ -1,4 +1,4 @@
-package zloOfMyOwn.oop.collections;
+package zloOfMyOwn.oop.adtsBolest;
 
 public class StackOStrings
 {
