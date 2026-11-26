@@ -30,10 +30,10 @@ public class StringQueue {
     }
 
     int getSize(){
-        int sizeCounter = 0;
+        int sizeCounter = 1;
         QueueLink helper = first;
         if (helper == null){
-            return sizeCounter;
+            return 0;
         }
 
         //dokud vedle tebe neco je...
