@@ -10,7 +10,7 @@ public class ParseFile
     {
         String path = "data/countries.txt";
         DataImport dataim = new DataImport(path);
-        DataExport dataex = new DataExport("outp.txt");
+        DataExport dataex = new DataExport("textFilesDump/outp.txt");
         /*String theOutpIGuess = dataim.readLine();
         String[]info = theOutpIGuess.split(";");
         String state = info[0];
@@ -65,6 +65,7 @@ public class ParseFile
                 highestDeathAge.continent = cntry1.continent;
                 highestDeathAge.population = cntry1.population;
                 highestDeathAge.avgDeathAge = cntry1.avgDeathAge;
+                
             }
             if(cntry1.population < lowestPopulation.avgDeathAge)
             {
@@ -72,12 +73,16 @@ public class ParseFile
                 lowestPopulation.continent = cntry1.continent;
                 lowestPopulation.population = cntry1.population;
                 lowestPopulation.avgDeathAge = cntry1.avgDeathAge;
+
             }
             //System.out.println(cntry1);
+            
         }
+        dataex.writeLine("Highest death : " + highestDeathAge.state +" "+ highestDeathAge.continent +" "+ highestDeathAge.population +" "+ highestDeathAge.avgDeathAge);
+        dataex.writeLine("Lowest population : " + lowestPopulation.state +" "+ lowestPopulation.continent +" "+ lowestPopulation.population +" "+ lowestPopulation.avgDeathAge);
         System.out.println(highestDeathAge);
         System.out.println(lowestPopulation);
-      //  dataex.FinishExport();
+        dataex.finishExport();
         dataim.finishImport();
     }    
 }
