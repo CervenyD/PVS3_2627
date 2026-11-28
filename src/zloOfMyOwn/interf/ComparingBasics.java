@@ -32,12 +32,12 @@ public class ComparingBasics {
         printList(items);
 
         //anonymni vnitrni trida
-        Comparator<Item> BY_PRICE = new Comparator<Item>() {
+       /* Comparator<Item> BY_PRICE = new Comparator<Item>() {
             @Override
             public int compare(Item o1, Item o2) {
                 return 0;
             }
-        };
+        };*/
     }
 }
 class Item implements Comparable<Item>{
@@ -57,10 +57,17 @@ class Item implements Comparable<Item>{
         public int compare(Item o1, Item o2) {
             double totalCena1 = o1.price * o1.quantity;
             double totalCena2 = o2.price * o2.quantity;
-            return Double.compare(Item o1, Item o2);  // TODO:tady to rve
+            return Double.compare(totalCena1, totalCena2); 
         }
     };
-    public static final Comparator<Item> BY_POCET{}
+    public static final Comparator<Item> BY_POCET = new Comparator<Item>()
+    {
+        @Override
+        public int compare(Item o1, Item o2)
+        {
+            return Integer.compare(o1.quantity, o2.quantity);
+        }
+    };
 
 
     public Item(String name, int quantity, double price) {
